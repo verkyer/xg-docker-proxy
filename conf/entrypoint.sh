@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# 如果找到模板，就用 envsubst 注入环境变量
+# 如果找到 index.html.template，就用 envsubst 替换为 index.html
 if [ -f /usr/share/nginx/html/index.html.template ]; then
   envsubst '${VPS_HOST} ${VPS_PORT}' \
     < /usr/share/nginx/html/index.html.template \
