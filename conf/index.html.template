@@ -2,27 +2,29 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>My Docker Proxy - No Cache</title>
+    <title>Tengine Proxy - No Cache</title>
 </head>
 <body>
-<h1>Docker Proxy for $VPS_HOST:$VPS_PORT</h1>
-<p>此服务可做 HTTP/HTTPS 代理（CONNECT），不缓存镜像层。</p>
+<h1>Tengine Proxy for $VPS_HOST:$VPS_PORT</h1>
+<p>此服务基于 Tengine (2.5.2) 提供 <strong>HTTP/HTTPS CONNECT</strong> 代理，纯中转不缓存。</p>
 
 <ol>
-    <li>在国内机器上设置：</li>
-    <pre>export HTTP_PROXY="http://$VPS_HOST:$VPS_PORT"
-export HTTPS_PROXY="http://$VPS_HOST:$VPS_PORT"
-</pre>
-    <li>或者在 <code>/etc/docker/daemon.json</code> 中写：</li>
-    <pre>{
+    <li><strong>在国内机器上设置代理：</strong><br/>
+        <code>export HTTP_PROXY="http://$VPS_HOST:$VPS_PORT"</code><br/>
+        <code>export HTTPS_PROXY="http://$VPS_HOST:$VPS_PORT"</code>
+    </li>
+    <li><strong>或者在 /etc/docker/daemon.json 中：</strong>
+<pre>{
   "proxies": {
     "httpProxy": "http://$VPS_HOST:$VPS_PORT",
     "httpsProxy": "http://$VPS_HOST:$VPS_PORT"
   }
 }
 </pre>
-    <li>重启 Docker，并测试：<br/>
-    <pre>docker pull hello-world</pre></li>
+    </li>
+    <li><strong>重启 Docker</strong>，然后执行 <code>docker pull hello-world</code> 测试。</li>
+    <li>若成功说明配置OK。</li>
 </ol>
+
 </body>
 </html>
